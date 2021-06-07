@@ -1,4 +1,6 @@
 import React from 'react';
+import {useHistory} from 'react-router-dom';
+
 
 let plants = [
   "https://gardeningsolutions.ifas.ufl.edu/mastergardener/outreach/plant_id/images/flowers/bird_paradise_flower.jpg",
@@ -8,7 +10,23 @@ let plants = [
   "https://upload.wikimedia.org/wikipedia/commons/7/71/Kalanchoe_tomentosa_Panda_Plant_%28fabooj%29.jpg"
 ]
 
+
 function Plants() {
+
+  // Browser history: 
+  const history = useHistory();
+
+  const handleHome = () => {
+    alert("You are heading home!");
+    // Change location sent, syntax is history.push('WHERE YOU WANNA GO'):
+    history.push('/');
+  }
+
+  const handleClick = () => {
+    // GO BACK:
+    history.goBack();
+  }
+
   return (
     <div>
       <h1>PLANTS</h1>
@@ -18,6 +36,10 @@ function Plants() {
           src={plant}
         />
       )}
+      <br />
+      {/* Change programmatically: */}
+      <button onClick={handleHome}>GO HOME</button>
+      <button onClick={handleClick}>GO BACK</button>
     </div>
   );
 }
